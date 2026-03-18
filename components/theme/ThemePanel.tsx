@@ -5,10 +5,12 @@ import { Palette, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import ColorEditor from "./ColorEditor";
+import FontEditor from "./FontEditor";
 
 export default function ThemePanel() {
   const { isPanelOpen, togglePanel } = useThemeContext();
   const [mounted, setMounted] = useState(false);
+  const [activeTab, setActiveTab] = useState<"colors" | "fonts">("colors");
 
   useEffect(() => {
     setMounted(true);
@@ -46,10 +48,10 @@ export default function ThemePanel() {
         )}
       >
         {/* Header du panneau */}
-        <div className="flex items-center justify-between border-b border-border/50 px-6 py-4">
+        <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
             <Palette className="h-5 w-5 text-foreground" />
-            <h2 className="text-lg font-bold text-foreground font-[family-name:var(--font-sans)]">
+            <h2 className="text-lg font-bold text-foreground font-[family-name:var(--theme-font-body)]">
               Personnalisation
             </h2>
           </div>
@@ -62,9 +64,31 @@ export default function ThemePanel() {
           </button>
         </div>
 
+        {/* Onglets */}
+        <div className="flex border-b border-border">
+          <button
+            onClick={() => setActiveTab("colors")}
+            className={cn(
+              "flex-1 py-3 text-sm font-semibold text-center transition-colors border-b-2 font-[family-name:var(--theme-font-body)]",
+              activeTab === "colors" ? "border-foreground text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"
+            )}
+          >
+            Couleurs
+          </button>
+          <button
+            onClick={() => setActiveTab("fonts")}
+            className={cn(
+              "flex-1 py-3 text-sm font-semibold text-center transition-colors border-b-2 font-[family-name:var(--theme-font-body)]",
+              activeTab === "fonts" ? "border-foreground text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"
+            )}
+          >
+            Polices
+          </button>
+        </div>
+
         {/* Contenu du panneau */}
-        <div className="flex-1 overflow-y-auto p-6 text-foreground font-[family-name:var(--font-sans)]">
-          <ColorEditor />
+        <div className="flex-1 overflow-y-auto p-6 text-foreground font-[family-name:var(--theme-font-body)]">
+          {activeTab === "colors" ? <ColorEditor /> : <FontEditor />}
         </div>
       </div>
     </>
