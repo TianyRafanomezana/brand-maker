@@ -10,7 +10,7 @@ const trends = [
 export default function Trends() {
   return (
     <section id="trends" className="w-full py-12 px-8 bg-background" data-editable="background">
-      <h2 className="text-center text-xl font-semibold tracking-[0.2em] text-foreground uppercase mb-10" data-editable="foreground">
+      <h2 className="font-[family-name:var(--theme-font-heading)] text-center text-xl font-semibold tracking-[0.2em] text-foreground uppercase mb-10" data-editable="foreground" data-font-category="heading">
         LES TENDANCES
       </h2>
 

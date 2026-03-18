@@ -26,10 +26,10 @@ export default function InfoBar() {
           <div key={item.title} className="flex items-start gap-4 px-8 py-6">
             <item.icon className="w-8 h-8 text-foreground flex-shrink-0 mt-0.5" strokeWidth={1.5} data-editable="foreground" />
             <div>
-              <h3 className="text-sm font-bold tracking-wider text-foreground uppercase" data-editable="foreground">
+              <h3 className="font-[family-name:var(--theme-font-product)] text-sm font-bold tracking-wider text-foreground uppercase" data-editable="foreground" data-font-category="product">
                 {item.title}
               </h3>
-              <p className="mt-1 text-xs text-muted-foreground leading-relaxed" data-editable="mutedForeground">
+              <p className="font-[family-name:var(--theme-font-body)] mt-1 text-xs text-muted-foreground leading-relaxed" data-editable="mutedForeground" data-font-category="body">
                 {item.description}
               </p>
             </div>

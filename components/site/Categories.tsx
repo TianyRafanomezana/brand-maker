@@ -34,7 +34,7 @@ export default function Categories() {
                 unoptimized
               />
             </div>
-            <p className="mt-3 text-sm font-semibold tracking-[0.15em] text-foreground uppercase" data-editable="foreground">
+            <p className="font-[family-name:var(--theme-font-product)] mt-3 text-sm font-semibold tracking-[0.15em] text-foreground uppercase" data-editable="foreground" data-font-category="product">
               {cat.label}
             </p>
           </a>

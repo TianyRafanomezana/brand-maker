@@ -35,13 +35,69 @@ export interface ThemeColors {
   footerBottomForeground: string;
 }
 
-/** Font configuration */
+/** Font configuration — one font per text category */
 export interface ThemeFonts {
-  /** Body / general text font (maps to --font-sans) */
-  sans: string;
-  /** Script / logo font (maps to --font-script) */
+  /** Main headings (Hero H1, section H2…) */
+  heading: string;
+  /** Product / category titles */
+  product: string;
+  /** Prices */
+  price: string;
+  /** Navigation, body text, footer text */
+  body: string;
+  /** Logo / decorative script font */
   script: string;
 }
+
+/** Font category metadata for UI and CSS mapping */
+export interface FontCategory {
+  id: keyof ThemeFonts;
+  label: string;
+  cssVar: string;
+}
+
+export const FONT_CATEGORIES: FontCategory[] = [
+  { id: "heading", label: "Titres principaux", cssVar: "--font-heading" },
+  { id: "product", label: "Titres produits", cssVar: "--font-product" },
+  { id: "price",   label: "Prix",             cssVar: "--font-price" },
+  { id: "body",    label: "Navigation / Corps", cssVar: "--font-body" },
+  { id: "script",  label: "Logo / Script",    cssVar: "--font-script" },
+];
+
+export const FONT_CSS_VAR_MAP: Record<keyof ThemeFonts, string> = {
+  heading: "--theme-font-heading",
+  product: "--theme-font-product",
+  price:   "--theme-font-price",
+  body:    "--theme-font-body",
+  script:  "--theme-font-script",
+};
+
+/** Curated list of popular Google Fonts (no API key needed) */
+export const AVAILABLE_FONTS = [
+  // Serif
+  { name: "Cormorant Garamond", category: "serif" },
+  { name: "Playfair Display",   category: "serif" },
+  { name: "Lora",               category: "serif" },
+  { name: "Merriweather",       category: "serif" },
+  { name: "EB Garamond",        category: "serif" },
+  { name: "Crimson Text",       category: "serif" },
+  { name: "Libre Baskerville",  category: "serif" },
+  // Sans-Serif
+  { name: "Inter",              category: "sans-serif" },
+  { name: "Montserrat",         category: "sans-serif" },
+  { name: "Poppins",            category: "sans-serif" },
+  { name: "Raleway",            category: "sans-serif" },
+  { name: "Open Sans",          category: "sans-serif" },
+  { name: "Lato",               category: "sans-serif" },
+  { name: "Outfit",             category: "sans-serif" },
+  { name: "Work Sans",          category: "sans-serif" },
+  // Display / Script
+  { name: "Great Vibes",        category: "script" },
+  { name: "Dancing Script",     category: "script" },
+  { name: "Pacifico",           category: "script" },
+  { name: "Sacramento",         category: "script" },
+  { name: "Satisfy",            category: "script" },
+] as const;
 
 /** Complete theme definition */
 export interface Theme {
@@ -187,7 +243,10 @@ export const DEFAULT_THEME: Theme = {
     footerBottomForeground: "#f5f0ee",
   },
   fonts: {
-    sans: "Cormorant Garamond",
+    heading: "Cormorant Garamond",
+    product: "Cormorant Garamond",
+    price: "Cormorant Garamond",
+    body: "Cormorant Garamond",
     script: "Great Vibes",
   },
 };

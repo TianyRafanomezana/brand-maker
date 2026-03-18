@@ -15,7 +15,7 @@ const products = [
 export default function ProductCarousel() {
   return (
     <section id="products" className="w-full py-12 px-8 bg-background" data-editable="background">
-      <h2 className="text-center text-xl font-semibold tracking-[0.2em] text-foreground uppercase mb-10" data-editable="foreground">
+      <h2 className="font-[family-name:var(--theme-font-heading)] text-center text-xl font-semibold tracking-[0.2em] text-foreground uppercase mb-10" data-editable="foreground" data-font-category="heading">
         LES PLUS VUES
       </h2>
 
@@ -38,10 +38,10 @@ export default function ProductCarousel() {
                   unoptimized
                 />
               </div>
-              <h3 className="mt-3 text-xs font-semibold tracking-[0.1em] text-foreground uppercase" data-editable="foreground">
+              <h3 className="font-[family-name:var(--theme-font-product)] mt-3 text-xs font-semibold tracking-[0.1em] text-foreground uppercase" data-editable="foreground" data-font-category="product">
                 {product.name}
               </h3>
-              <p className="mt-1 text-sm text-muted-foreground" data-editable="mutedForeground">
+              <p className="font-[family-name:var(--theme-font-price)] mt-1 text-sm text-muted-foreground" data-editable="mutedForeground" data-font-category="price">
                 {product.price}
               </p>
             </a>

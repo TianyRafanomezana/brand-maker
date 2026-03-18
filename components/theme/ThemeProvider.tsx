@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { ThemeState, ThemeColors, ThemeFonts, DEFAULT_THEME_STATE, DEFAULT_THEME } from "@/lib/theme/types";
 import { applyThemeToDOM } from "@/lib/theme/utils";
 import QuickColorPicker from "./QuickColorPicker";
+import QuickFontPicker from "./QuickFontPicker";
 import PaletteVisualizer from "./PaletteVisualizer";
 
 interface QuickPickerConfig {
@@ -11,6 +12,12 @@ interface QuickPickerConfig {
   y: number;
   colorKey: keyof ThemeColors;
   sectionId: string;
+}
+
+interface QuickFontPickerConfig {
+  x: number;
+  y: number;
+  fontCategory: keyof ThemeFonts;
 }
 
 interface ThemeContextType {
@@ -33,6 +40,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [quickPickerConfig, setQuickPickerConfig] = useState<QuickPickerConfig | null>(null);
+  const [quickFontPickerConfig, setQuickFontPickerConfig] = useState<QuickFontPickerConfig | null>(null);
 
   // Charger depuis le localStorage au premier rendu
   useEffect(() => {
@@ -42,16 +50,32 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       try {
         const parsed = JSON.parse(saved);
         
+        // Helper to migrate old font keys (sans → body)
+        const migrateFonts = (fonts: Record<string, string>) => {
+          const migrated = { ...fonts };
+          if (migrated.sans && !migrated.body) {
+            migrated.body = migrated.sans;
+            migrated.heading = migrated.heading || migrated.sans;
+            migrated.product = migrated.product || migrated.sans;
+            migrated.price = migrated.price || migrated.sans;
+            delete migrated.sans;
+          }
+          return migrated;
+        };
+
         // Migration depuis l'ancien format (Theme) vers le nouveau (ThemeState)
         if (parsed.colors && !parsed.global) {
+          const fonts = parsed.fonts ? migrateFonts(parsed.fonts) : {};
           setThemeState({
-            global: { ...DEFAULT_THEME, ...parsed },
+            global: { ...DEFAULT_THEME, ...parsed, fonts: { ...DEFAULT_THEME.fonts, ...fonts } },
             sections: {},
           });
         } else {
           // Nouveau format
+          const globalData = parsed.global || {};
+          const fonts = globalData.fonts ? migrateFonts(globalData.fonts) : {};
           setThemeState({
-            global: { ...DEFAULT_THEME, ...(parsed.global || {}) },
+            global: { ...DEFAULT_THEME, ...globalData, fonts: { ...DEFAULT_THEME.fonts, ...fonts } },
             sections: parsed.sections || {},
           });
         }
@@ -74,8 +98,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (!mounted) return;
 
     const handleDoubleClick = (e: MouseEvent) => {
-      // Find the closest element with data-editable attribute
       const target = e.target as HTMLElement;
+      
+      const fontElement = target.closest('[data-font-category]');
+      if (fontElement) {
+        e.preventDefault();
+        window.getSelection()?.removeAllRanges();
+        const fontCategory = fontElement.getAttribute('data-font-category') as keyof ThemeFonts;
+        
+        setQuickPickerConfig(null);
+        setQuickFontPickerConfig({
+          x: e.clientX,
+          y: e.clientY,
+          fontCategory,
+        });
+        return;
+      }
+
+      // Find the closest element with data-editable attribute
       const editableElement = target.closest('[data-editable]');
       
       if (editableElement) {
@@ -89,6 +129,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         const sectionElement = editableElement.closest('section[id]');
         const sectionId = sectionElement ? sectionElement.id : 'global';
 
+        setQuickFontPickerConfig(null);
         setQuickPickerConfig({
           x: e.clientX,
           y: e.clientY,
@@ -258,11 +299,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
             // Close the picker
             setQuickPickerConfig(null);
           }}
-          onClose={() => setQuickPickerConfig(null)}
-        />
-      )}
-    </ThemeContext.Provider>
-  );
+            onClose={() => setQuickPickerConfig(null)}
+          />
+        )}
+        
+        {quickFontPickerConfig && (
+          <QuickFontPicker
+            x={quickFontPickerConfig.x}
+            y={quickFontPickerConfig.y}
+            fontCategory={quickFontPickerConfig.fontCategory}
+            currentValue={themeState.global.fonts[quickFontPickerConfig.fontCategory] || ""}
+            isModified={themeState.global.fonts[quickFontPickerConfig.fontCategory] !== DEFAULT_THEME.fonts[quickFontPickerConfig.fontCategory]}
+            onChange={(val) => updateFont(quickFontPickerConfig.fontCategory, val)}
+            onReset={() => updateFont(quickFontPickerConfig.fontCategory, DEFAULT_THEME.fonts[quickFontPickerConfig.fontCategory])}
+            onClose={() => setQuickFontPickerConfig(null)}
+          />
+        )}
+      </ThemeContext.Provider>
+    );
 }
 
 export function useThemeContext() {

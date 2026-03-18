@@ -5,13 +5,13 @@ import ThemePanel from "@/components/theme/ThemePanel";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
-  variable: "--font-sans",
+  variable: "--theme-font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
 
 const greatVibes = Great_Vibes({
-  variable: "--font-script",
+  variable: "--theme-font-script",
   subsets: ["latin"],
   weight: ["400"],
 });
@@ -29,7 +29,12 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body
-        className={`${cormorant.variable} ${greatVibes.variable} antialiased`}
+        className={`${cormorant.variable} ${greatVibes.variable} antialiased font-body`}
+        style={{
+          "--theme-font-heading": "var(--theme-font-body)",
+          "--theme-font-product": "var(--theme-font-body)",
+          "--theme-font-price": "var(--theme-font-body)",
+        } as React.CSSProperties}
       >
         <ThemeProvider>
           <ThemePanel />

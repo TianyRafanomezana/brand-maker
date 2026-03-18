@@ -17,7 +17,7 @@ export default function Header() {
     <header id="header" className="w-full bg-background" data-editable="background">
       {/* Logo */}
       <div className="flex items-center justify-center py-6">
-        <Link href="/" className="font-[family-name:var(--font-script)] text-5xl text-foreground hover:opacity-80 transition-opacity" data-editable="foreground">
+        <Link href="/" className="font-[family-name:var(--theme-font-script)] text-5xl text-foreground hover:opacity-80 transition-opacity" data-editable="foreground" data-font-category="script">
           Rabarany
         </Link>
       </div>
@@ -30,8 +30,9 @@ export default function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="text-sm font-medium tracking-wider text-foreground hover:opacity-70 transition-opacity flex items-center gap-1"
+              className="font-[family-name:var(--theme-font-body)] text-sm font-medium tracking-wider text-foreground hover:opacity-70 transition-opacity flex items-center gap-1"
               data-editable="foreground"
+              data-font-category="body"
             >
               {item.label}
               {item.hasDropdown && (
