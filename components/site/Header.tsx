@@ -6,20 +6,23 @@ import Link from "next/link";
 const navItems = [
   { label: "ACCUEIL" },
   { label: "PRÉSENTATION" },
-  { 
-    label: "SAC", 
-    hasDropdown: true, 
-    subItems: ["Cabas", "Sacs à main", "Pochettes", "Paniers"] 
+  {
+    label: "COLLECTION",
+    hasDropdown: true,
+    subItems: ["Nouvelle Collection", "Intemporels", "Édition limitée"]
   },
-  { 
-    label: "ACCESSOIRES", 
-    hasDropdown: true, 
-    subItems: ["Ceintures", "Bijoux", "Foulards"] 
+  {
+    label: "SAC",
+    hasDropdown: true,
+    subItems: ["Sac porté épaule", "Sac bandoulière", "Sac édition limitée"]
   },
-  { 
-    label: "CHAPEAUX", 
-    hasDropdown: true, 
-    subItems: ["Bobs", "Capelines", "Chapeaux de paille"] 
+  {
+    label: "CHAPEAUX",
+  },
+  {
+    label: "ACCESSOIRES",
+    hasDropdown: true,
+    subItems: ["Ceintures", "Pochettes"]
   },
   { label: "CONTACT" },
 ];

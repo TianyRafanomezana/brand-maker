@@ -1,31 +1,27 @@
 export default function Hero() {
   return (
     <section id="hero" className="relative w-full h-[500px] overflow-hidden">
-      {/* Background image placeholder — dark textured pattern */}
+      {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://placehold.co/1920x500/3a3230/3a3230')`,
-          backgroundColor: "#3a3230",
+          backgroundImage: `url('/img/welcome.jpeg')`,
         }}
       >
-        {/* Overlay pattern to simulate the textured wallpaper look */}
-        <div className="absolute inset-0 opacity-30" style={{
-          backgroundImage: `repeating-conic-gradient(#2c2321 0% 25%, transparent 0% 50%)`,
-          backgroundSize: "20px 20px",
-        }} />
+        {/* Dark overlay for text legibility */}
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Content overlay */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center">
-        <h1 
+        <h1
           className="font-[family-name:var(--theme-font-heading)] text-5xl md:text-6xl font-light tracking-[0.2em] text-primary-foreground uppercase mb-2"
           data-editable="primaryForeground"
           data-font-category="heading"
         >
           RABARANY
         </h1>
-        <p 
+        <p
           className="font-[family-name:var(--theme-font-heading)] text-2xl md:text-3xl font-light tracking-[0.15em] text-primary-foreground uppercase mb-8"
           data-editable="primaryForeground"
           data-font-category="heading"

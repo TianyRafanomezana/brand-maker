@@ -46,7 +46,7 @@ export default function Categories() {
                     {cat.label}
                   </h3>
                   {cat.subtitle && (
-                    <p className="font-[family-name:var(--theme-font-product)] text-[13px] font-medium tracking-wide text-foreground mt-2 italic drop-shadow-sm" data-editable="foreground" data-font-category="product">
+                    <p className="font-[family-name:var(--theme-font-product)] text-[13px] font-medium tracking-wide text-foreground mt-2 drop-shadow-sm" data-editable="foreground" data-font-category="product">
                       {cat.subtitle}
                     </p>
                   )}
