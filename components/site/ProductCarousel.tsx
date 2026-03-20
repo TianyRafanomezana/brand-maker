@@ -4,12 +4,12 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const products = [
-  { name: "MOUSTIERS FILET MM 4T", price: "105,00 €", image: "https://placehold.co/300x400/f5f0ee/8b7d76?text=Moustiers" },
-  { name: "TSARA FLORE", price: "165,00 €", image: "https://placehold.co/300x400/f5f0ee/8b7d76?text=Tsara" },
-  { name: "LISTIER MANA MM", price: "115,00 €", image: "https://placehold.co/300x400/f5f0ee/8b7d76?text=Listier" },
-  { name: "ANAY", price: "99,00 €", image: "https://placehold.co/300x400/f5f0ee/8b7d76?text=Anay" },
-  { name: "KELY MANA", price: "89,00 €", image: "https://placehold.co/300x400/f5f0ee/8b7d76?text=Kely" },
-  { name: "FILET", price: "75,00 €", image: "https://placehold.co/300x400/f5f0ee/8b7d76?text=Filet" },
+  { name: "TSARA BASIC", price: "105,00 €", image: "/img/tsara-basic.jpg" },
+  { name: "TSARA FLORE", price: "165,00 €", image: "/img/tsara-flore.jpg" },
+  { name: "LISTIER MANA MM", price: "115,00 €", image: "/img/listier-mana-mm.jpg" },
+  { name: "ANAY", price: "99,00 €", image: "/img/tsara-pasty.jpg" },
+  { name: "KELY MANA", price: "89,00 €", image: "/img/ramena-pm.jpg" },
+  { name: "FILET", price: "75,00 €", image: "/img/tsara-flore.jpg" },
 ];
 
 export default function ProductCarousel() {
@@ -28,13 +28,13 @@ export default function ProductCarousel() {
         {/* Products grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {products.slice(0, 4).map((product) => (
-            <a key={product.name} href="#" className="group block">
+            <div key={product.name} className="group block cursor-pointer">
               <div className="relative w-full aspect-[3/4] bg-card overflow-hidden" data-editable="card">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover transition-transform duration-300 "
                   unoptimized
                 />
               </div>
@@ -44,7 +44,7 @@ export default function ProductCarousel() {
               <p className="font-[family-name:var(--theme-font-price)] mt-1 text-sm text-muted-foreground" data-editable="mutedForeground" data-font-category="price">
                 {product.price}
               </p>
-            </a>
+            </div>
           ))}
         </div>
 

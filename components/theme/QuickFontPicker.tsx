@@ -50,7 +50,7 @@ export default function QuickFontPicker({
   return (
     <div
       ref={containerRef}
-      className="fixed z-[100] flex flex-col gap-2 rounded-lg border border-border bg-popover p-3 shadow-xl animate-in fade-in zoom-in-95 duration-200 w-[200px] font-[family-name:var(--theme-font-body)]"
+      className="fixed z-[100] flex gap-2 rounded-lg border border-border bg-popover p-3 shadow-xl animate-in fade-in zoom-in-95 duration-200 w-[200px] font-[family-name:var(--theme-font-body)]"
       style={{ top, left }}
     >
       <div className="flex items-center justify-between">

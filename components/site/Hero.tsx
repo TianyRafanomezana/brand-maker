@@ -32,13 +32,12 @@ export default function Hero() {
         >
           LA FIBRE NATURELLE
         </p>
-        <a
-          href="#"
-          className="font-[family-name:var(--theme-font-body)] border border-white text-white px-8 py-3 text-sm tracking-[0.2em] uppercase hover:bg-white hover:text-foreground transition-colors"
+        <span
+          className="cursor-pointer font-[family-name:var(--theme-font-body)] border border-white text-white px-8 py-3 text-sm tracking-[0.2em] uppercase hover:bg-white hover:text-foreground transition-colors"
           data-font-category="body"
         >
           VISITEZ LA BOUTIQUE
-        </a>
+        </span>
       </div>
     </section>
   );

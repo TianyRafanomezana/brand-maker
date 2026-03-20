@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 const trends = [
-  { image: "https://placehold.co/300x450/e8ddd9/8b7d76?text=Look+1" },
-  { image: "https://placehold.co/300x450/e8ddd9/8b7d76?text=Look+2" },
-  { image: "https://placehold.co/300x450/e8ddd9/8b7d76?text=Look+3" },
-  { image: "https://placehold.co/300x450/e8ddd9/8b7d76?text=Look+4" },
+  { image: "/img/td-first.png" },
+  { image: "/img/td-second.png" },
+  { image: "/img/td-third.png" },
+  { image: "/img/td-fourth.png" },
 ];
 
 export default function Trends() {
@@ -16,7 +16,7 @@ export default function Trends() {
 
       <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
         {trends.map((trend, i) => (
-          <a key={i} href="#" className="group block overflow-hidden">
+          <div key={i} className="group block overflow-hidden cursor-pointer">
             <div className="relative w-full aspect-[2/3] bg-card overflow-hidden" data-editable="card">
               <Image
                 src={trend.image}
@@ -26,7 +26,7 @@ export default function Trends() {
                 unoptimized
               />
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </section>

@@ -31,7 +31,7 @@ export default function FontEditor() {
 
           return (
             <div key={fontKey} className="flex flex-col gap-1.5">
-              <label 
+              <label
                 htmlFor={`font-${fontKey}`}
                 className="text-xs font-semibold text-foreground flex justify-between items-center"
               >

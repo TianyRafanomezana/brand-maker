@@ -5,41 +5,41 @@ const footerColumns = [
   {
     title: "HORAIRES D'OUVERTURE",
     links: [
-      { label: "Du Lundi au Vendredi", href: "#" },
-      { label: "De 9h à 18h", href: "#" },
+      { label: "Du Lundi au Vendredi" },
+      { label: "De 9h à 18h" },
     ],
   },
   {
     title: "INFORMATIONS",
     links: [
-      { label: "Livraison et retour", href: "#" },
-      { label: "Mentions légales", href: "#" },
-      { label: "Conditions générales", href: "#" },
+      { label: "Livraison et retour" },
+      { label: "Mentions légales" },
+      { label: "Conditions générales" },
     ],
   },
   {
     title: "RABARANY",
     links: [
-      { label: "La marque", href: "#" },
-      { label: "Lookbook", href: "#" },
-      { label: "A propos", href: "#" },
+      { label: "La marque" },
+      { label: "Lookbook" },
+      { label: "A propos" },
     ],
   },
   {
     title: "LA COLLECTION",
     links: [
-      { label: "Sacs", href: "#" },
-      { label: "Chapeaux", href: "#" },
-      { label: "Accessoires", href: "#" },
-      { label: "Paniers / Cabas", href: "#" },
+      { label: "Sacs" },
+      { label: "Chapeaux" },
+      { label: "Accessoires" },
+      { label: "Paniers / Cabas" },
     ],
   },
   {
     title: "SERVICE CLIENT",
     links: [
-      { label: "Phone: 06 95 18 81 17", href: "#" },
-      { label: "WhatsApp +33 6 95 18 81 17", href: "#" },
-      { label: "contact@rabarany.com", href: "mailto:contact@rabarany.com" },
+      { label: "Phone: 06 95 18 81 17" },
+      { label: "WhatsApp +33 6 95 18 81 17" },
+      { label: "contact@rabarany.com" },
     ],
   },
 ];
@@ -58,14 +58,13 @@ export default function Footer() {
               <ul className="space-y-2">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="font-[family-name:var(--theme-font-body)] text-xs text-muted-foreground hover:text-foreground underline decoration-muted-foreground/40 hover:decoration-foreground transition-colors"
+                    <span
+                      className="cursor-pointer font-[family-name:var(--theme-font-body)] text-xs text-muted-foreground hover:text-foreground underline decoration-muted-foreground/40 hover:decoration-foreground transition-colors"
                       data-editable="mutedForeground"
                       data-font-category="body"
                     >
                       {link.label}
-                    </Link>
+                    </span>
                   </li>
                 ))}
               </ul>
